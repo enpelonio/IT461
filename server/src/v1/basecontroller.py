@@ -27,4 +27,5 @@ class BaseController():
                 'offset='+str(offset),
                 'offset='+str(new_offset)
             )
+        print(offset,limit)
         return links
