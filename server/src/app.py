@@ -1,11 +1,14 @@
 from flask import Flask, request, jsonify, g
 from v1.dog.router import DogRouter
 from v1.cat.router import CatRouter
+from v1.user.router import UserRouter
 from v1.auth import login as auth_login, verify_token as auth_verify_token
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'I/L0ve/CIT-U'
 app.register_blueprint(DogRouter.handler())
+app.register_blueprint(CatRouter.handler())
+app.register_blueprint(UserRouter.handler())
 
 @app.route('/v1/login', methods=['POST'])
 def login():
@@ -23,9 +26,6 @@ def verify_token():
         return jsonify({'message': 'Invalid token'}), 403
     return jsonify({'ok': 'Token is valid'})
 
-bp_cats = Blueprint('cats', __name__, url_prefix='/v1/cats')
-CatRouter.handler(bp_cats)
-app.register_blueprint(bp_cats)
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=6000)
