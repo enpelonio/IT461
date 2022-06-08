@@ -1,4 +1,4 @@
-@host = http://127.0.0.1:8081/v1/dogs
+@host = http://127.0.0.1:8080/v1/dogs
 
 
 ### Get all dogs
